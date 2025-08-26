@@ -1,0 +1,14 @@
+C:\Users\nicla\Desktop\Deakin Uni\OOP\Code\Pass Task 1.2\bin\Debug\net9.0\Pass Task 1.2.exe
+C:\Users\nicla\Desktop\Deakin Uni\OOP\Code\Pass Task 1.2\bin\Debug\net9.0\Pass Task 1.2.deps.json
+C:\Users\nicla\Desktop\Deakin Uni\OOP\Code\Pass Task 1.2\bin\Debug\net9.0\Pass Task 1.2.runtimeconfig.json
+C:\Users\nicla\Desktop\Deakin Uni\OOP\Code\Pass Task 1.2\bin\Debug\net9.0\Pass Task 1.2.dll
+C:\Users\nicla\Desktop\Deakin Uni\OOP\Code\Pass Task 1.2\bin\Debug\net9.0\Pass Task 1.2.pdb
+C:\Users\nicla\Desktop\Deakin Uni\OOP\Code\Pass Task 1.2\obj\Debug\net9.0\Pass Task 1.2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nicla\Desktop\Deakin Uni\OOP\Code\Pass Task 1.2\obj\Debug\net9.0\Pass Task 1.2.AssemblyInfoInputs.cache
+C:\Users\nicla\Desktop\Deakin Uni\OOP\Code\Pass Task 1.2\obj\Debug\net9.0\Pass Task 1.2.AssemblyInfo.cs
+C:\Users\nicla\Desktop\Deakin Uni\OOP\Code\Pass Task 1.2\obj\Debug\net9.0\Pass Task 1.2.csproj.CoreCompileInputs.cache
+C:\Users\nicla\Desktop\Deakin Uni\OOP\Code\Pass Task 1.2\obj\Debug\net9.0\Pass Task 1.2.dll
+C:\Users\nicla\Desktop\Deakin Uni\OOP\Code\Pass Task 1.2\obj\Debug\net9.0\refint\Pass Task 1.2.dll
+C:\Users\nicla\Desktop\Deakin Uni\OOP\Code\Pass Task 1.2\obj\Debug\net9.0\Pass Task 1.2.pdb
+C:\Users\nicla\Desktop\Deakin Uni\OOP\Code\Pass Task 1.2\obj\Debug\net9.0\Pass Task 1.2.genruntimeconfig.cache
+C:\Users\nicla\Desktop\Deakin Uni\OOP\Code\Pass Task 1.2\obj\Debug\net9.0\ref\Pass Task 1.2.dll

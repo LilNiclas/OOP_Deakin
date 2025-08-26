@@ -1,0 +1,23 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "employee",
+      "type": "coreclr",
+      "request": "launch",
+      "program": "${workspaceFolder}/employee/bin/Debug/net9.0/employee.dll",
+      "cwd": "${workspaceFolder}/employee",
+      "console": "integratedTerminal",
+      "stopAtEntry": false
+    },
+    {
+      "name": "mobile",
+      "type": "coreclr",
+      "request": "launch",
+      "program": "${workspaceFolder}/mobile/bin/Debug/net9.0/mobile.dll",
+      "cwd": "${workspaceFolder}/mobile",
+      "console": "integratedTerminal",
+      "stopAtEntry": false
+    }
+    ]
+}
