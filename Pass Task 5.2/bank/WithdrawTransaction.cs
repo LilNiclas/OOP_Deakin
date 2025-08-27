@@ -33,7 +33,7 @@ namespace task_5_2
         {
             if (Executed)
             {
-                throw new InvalidOperationException("This transaction has already been executed");
+                throw new InvalidOperationException("Transaction has already been executed");
             }
 
             _executed = true;
@@ -52,11 +52,11 @@ namespace task_5_2
         {
             if (!Executed)
             {
-                throw new InvalidOperationException("This transaction has not been executed yet");
+                throw new InvalidOperationException("Transaction has not been executed yet");
             }
             if (Reversed)
             {
-                throw new InvalidOperationException("This transaction has already been reversed");
+                throw new InvalidOperationException("Transaction has already been reversed");
             }
             if (Success)
             {
@@ -67,7 +67,7 @@ namespace task_5_2
             }
             else
             {
-                throw new InvalidOperationException("Transaction was not successful, cant rollback");
+                throw new InvalidOperationException("Transaction was not successful, can't rollback");
             }
         }
     }

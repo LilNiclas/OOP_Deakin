@@ -30,7 +30,7 @@ namespace task_5_2
         {
             if (Executed)
             {
-                throw new InvalidOperationException("This transfer has already been executed.");
+                throw new InvalidOperationException("Transfer has already been executed.");
             }
 
             _executed = true;
@@ -55,12 +55,12 @@ namespace task_5_2
 
             if (Reversed)
             {
-                throw new InvalidOperationException("This transfer has already been reversed.");
+                throw new InvalidOperationException("Transfer has already been reversed.");
             }
 
             if (!Success)
             {
-                throw new InvalidOperationException("Transfer was not successful; cannot rollback.");
+                throw new InvalidOperationException("Transfer was not successful, can't rollback.");
             }
 
             try
