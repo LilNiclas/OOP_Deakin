@@ -26,3 +26,4 @@ C:\Users\nicla\Desktop\Deakin Uni\OOP\Code\Pass Task 5.2\bank\obj\Debug\net9.0\r
 C:\Users\nicla\Desktop\Deakin Uni\OOP\Code\Pass Task 5.2\bank\obj\Debug\net9.0\bank.pdb
 C:\Users\nicla\Desktop\Deakin Uni\OOP\Code\Pass Task 5.2\bank\obj\Debug\net9.0\bank.genruntimeconfig.cache
 C:\Users\nicla\Desktop\Deakin Uni\OOP\Code\Pass Task 5.2\bank\obj\Debug\net9.0\ref\bank.dll
+C:\Users\nicla\Desktop\Deakin Uni\OOP\Code\Pass Task 5.2\bank\obj\Debug\net9.0\bank.sourcelink.json
