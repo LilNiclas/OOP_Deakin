@@ -180,6 +180,24 @@
       "cwd": "${workspaceFolder}/Pass Task 6.1/animal",
       "console": "integratedTerminal",
       "stopAtEntry": false
+    },
+    {
+      "name": "Task6.1 - Q4",
+      "type": "coreclr",
+      "request": "launch",
+      "program": "${workspaceFolder}/Pass Task 6.1/animalQ4/bin/Debug/net9.0/animalQ4.dll",
+      "cwd": "${workspaceFolder}/Pass Task 6.1/animalQ4",
+      "console": "integratedTerminal",
+      "stopAtEntry": false
+    },
+    {
+      "name": "Task6.2",
+      "type": "coreclr",
+      "request": "launch",
+      "program": "${workspaceFolder}/Pass Task 6.2/bank/bin/Debug/net9.0/bank.dll",
+      "cwd": "${workspaceFolder}/Pass Task 6.2/bank",
+      "console": "integratedTerminal",
+      "stopAtEntry": false
     }
     ]
 }

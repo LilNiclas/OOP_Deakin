@@ -1,5 +1,5 @@
 using System;
-namespace task_5_2
+namespace task_6_2
 {
     class WithdrawTransaction
     {

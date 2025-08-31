@@ -1,34 +1,46 @@
 ﻿using System;
-namespace task_5_2
+namespace task_6_2
 {
     class BankSystem
     {
         static void Main(string[] args)
         {
+            //Initial accounts and bank
+            Bank bank = new Bank();
+
             Account fromAccount = new Account("Niclas", 500m);
             Account toAccount = new Account("Bobbers", 300m);
+            
+            bank.AddAccount(fromAccount);
+            bank.AddAccount(toAccount);
+
+            //Enum
             MenuOption choice;
 
             do
             {
                 choice = ReadUserOption();
-                
+
                 switch (choice)
                 {
                     case MenuOption.Withdraw:
-                        DoWithdraw(fromAccount);
+                        DoWithdraw(bank);
                         break;
 
                     case MenuOption.Deposit:
-                        DoDeposit(fromAccount);
+                        DoDeposit(bank);
                         break;
 
                     case MenuOption.Transfer:
-                        DoTransfer(fromAccount, toAccount);
+                        DoTransfer(bank);
+                        break;
+
+                    case MenuOption.AddAccount:
+                        AddNewAccount(bank);
                         break;
 
                     case MenuOption.Print:
-                        DoPrint(fromAccount, toAccount);
+                        DoPrint(bank);
                         break;
 
                     case MenuOption.Quit:
@@ -54,30 +66,36 @@ namespace task_5_2
                     Console.WriteLine("1. Withdraw");
                     Console.WriteLine("2. Deposit");
                     Console.WriteLine("3. Transfer");
-                    Console.WriteLine("4. Print");
-                    Console.WriteLine("5. Quit");
-                    Console.Write("Choose an option (1-5): ");
+                    Console.WriteLine("4. Add Account");
+                    Console.WriteLine("5. Print");
+                    Console.WriteLine("6. Quit");
+                    Console.Write("Choose an option (1-6): ");
 
                     int input = Convert.ToInt32(Console.ReadLine());
 
-                    if (input >= 1 && input <= 4)
+                    if (input >= 1 && input <= 6)
                     {
                         return (MenuOption)(input - 1);
                     }
                     else
                     {
-                        Console.WriteLine("Input must be between 1 and 4");
+                        Console.WriteLine("Input must be between 1 and 6");
                     }
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("You can only enter integers" + "\n"+ e.Message);
+                    Console.WriteLine("You can only enter integers" + "\n" + e.Message);
                 }
             }
         }
 
-        static void DoWithdraw(Account account)
+        static void DoWithdraw(Bank bank)
         {
+            Account account = FindAccount(bank);
+            if (account == null)
+            {
+                return;
+            }
             Console.Write("Enter amount to withdraw: ");
             decimal amount = Convert.ToDecimal(Console.ReadLine());
             WithdrawTransaction transaction = new WithdrawTransaction(account, amount);
@@ -93,8 +111,13 @@ namespace task_5_2
             transaction.Print();
         }
 
-        static void DoDeposit(Account account)
+        static void DoDeposit(Bank bank)
         {
+            Account account = FindAccount(bank);
+            if (account == null)
+            {
+                return;
+            }
             Console.Write("Enter amount to deposit: ");
             decimal amount = Convert.ToDecimal(Console.ReadLine());
             DepositTransaction transaction = new DepositTransaction(account, amount);
@@ -110,8 +133,16 @@ namespace task_5_2
             transaction.Print();
         }
 
-        static void DoTransfer(Account from, Account to)
+        static void DoTransfer(Bank bank)
         {
+            Console.WriteLine("From Account:");
+            Account from = FindAccount(bank);
+            if (from == null) return;
+
+            Console.WriteLine("To Account:");
+            Account to = FindAccount(bank);
+            if (to == null) return;
+
             Console.Write("Enter amount to transfer: ");
             decimal amount = Convert.ToDecimal(Console.ReadLine());
             TransferTransaction transaction = new TransferTransaction(from, to, amount);
@@ -127,12 +158,51 @@ namespace task_5_2
             transaction.Print();
         }
 
-
-        static void DoPrint(Account fromAccount, Account toAccount)
+        static void AddNewAccount(Bank bank)
         {
-            fromAccount.Print();
-            toAccount.Print();
+            try
+            {
+                Console.Write("Enter account name: ");
+                string name = Console.ReadLine();
+
+                Console.Write("Enter balance: ");
+                decimal balance = Convert.ToDecimal(Console.ReadLine());
+
+                Account newAccount = new Account(name, balance);
+                bank.AddAccount(newAccount);
+                Console.WriteLine("The account " + name + " had been added\n");
+                bank.GetAccount(name);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error adding new account: " + e.Message);
+            }
         }
+
+
+        static void DoPrint(Bank bank)
+        {
+            Account account = FindAccount(bank);
+            if (account == null) return;
+
+            account.Print();
+        }
+        
+        private static Account FindAccount(Bank bank)
+        {
+            Console.Write("Enter account name: ");
+            string name = Console.ReadLine();
+
+            Account account = bank.GetAccount(name);
+
+            if (account == null)
+            {
+                Console.WriteLine("Account " + name + " not found");
+            }
+
+            return account;
+        }
+
 
     }
     public enum MenuOption
@@ -140,6 +210,7 @@ namespace task_5_2
         Withdraw,
         Deposit,
         Transfer,
+        AddAccount,
         Print,
         Quit
     }
