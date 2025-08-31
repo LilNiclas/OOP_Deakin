@@ -10,7 +10,7 @@ namespace task_6_2
 
             Account fromAccount = new Account("Niclas", 500m);
             Account toAccount = new Account("Bobbers", 300m);
-            
+
             bank.AddAccount(fromAccount);
             bank.AddAccount(toAccount);
 
@@ -69,9 +69,8 @@ namespace task_6_2
                     Console.WriteLine("4. Add Account");
                     Console.WriteLine("5. Print");
                     Console.WriteLine("6. Quit");
-                    Console.Write("Choose an option (1-6): ");
 
-                    int input = Convert.ToInt32(Console.ReadLine());
+                    int input = ReadInteger("Choose an option (1-6): ");
 
                     if (input >= 1 && input <= 6)
                     {
@@ -96,8 +95,8 @@ namespace task_6_2
             {
                 return;
             }
-            Console.Write("Enter amount to withdraw: ");
-            decimal amount = Convert.ToDecimal(Console.ReadLine());
+
+            decimal amount = ReadDecimal("Enter amount to withdraw: ");
             WithdrawTransaction transaction = new WithdrawTransaction(account, amount);
             try
             {
@@ -118,8 +117,8 @@ namespace task_6_2
             {
                 return;
             }
-            Console.Write("Enter amount to deposit: ");
-            decimal amount = Convert.ToDecimal(Console.ReadLine());
+
+            decimal amount = ReadDecimal("Enter amount to deposit: ");
             DepositTransaction transaction = new DepositTransaction(account, amount);
             try
             {
@@ -143,8 +142,7 @@ namespace task_6_2
             Account to = FindAccount(bank);
             if (to == null) return;
 
-            Console.Write("Enter amount to transfer: ");
-            decimal amount = Convert.ToDecimal(Console.ReadLine());
+            decimal amount = ReadDecimal("Enter amount to transfer: ");
             TransferTransaction transaction = new TransferTransaction(from, to, amount);
             try
             {
@@ -166,7 +164,7 @@ namespace task_6_2
                 string name = Console.ReadLine();
 
                 Console.Write("Enter balance: ");
-                decimal balance = Convert.ToDecimal(Console.ReadLine());
+                decimal balance = ReadDecimal("Enter balance: ");
 
                 Account newAccount = new Account(name, balance);
                 bank.AddAccount(newAccount);
@@ -187,7 +185,7 @@ namespace task_6_2
 
             account.Print();
         }
-        
+
         private static Account FindAccount(Bank bank)
         {
             Console.Write("Enter account name: ");
@@ -202,6 +200,41 @@ namespace task_6_2
 
             return account;
         }
+
+        private static decimal ReadDecimal(string prompt)
+        {
+            while (true)
+            {
+                Console.WriteLine(prompt);
+                string input = Console.ReadLine();
+                try
+                {
+                    return Convert.ToDecimal(input);
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Error! Enter a number");
+                }
+            }
+        }
+        
+        private static int ReadInteger(string prompt)
+        {
+            while (true)
+            {
+                Console.Write(prompt);
+                string input = Console.ReadLine();
+                try
+                {
+                    return Convert.ToInt32(input);
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Error! Enter an integer");
+                }
+            }
+        }
+
 
 
     }
