@@ -171,6 +171,15 @@
       "cwd": "${workspaceFolder}/Pass Task 5.2/bank",
       "console": "integratedTerminal",
       "stopAtEntry": false
+    },
+    {
+      "name": "Task6.1",
+      "type": "coreclr",
+      "request": "launch",
+      "program": "${workspaceFolder}/Pass Task 6.1/animal/bin/Debug/net9.0/animal.dll",
+      "cwd": "${workspaceFolder}/Pass Task 6.1/animal",
+      "console": "integratedTerminal",
+      "stopAtEntry": false
     }
     ]
 }
