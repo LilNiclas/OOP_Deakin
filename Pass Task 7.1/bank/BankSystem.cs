@@ -43,6 +43,10 @@ namespace task_7_1
                         DoPrint(bank);
                         break;
 
+                    case MenuOption.History:
+                        DoHistory(bank);
+                        break;
+
                     case MenuOption.Quit:
                         Console.WriteLine("See ya mister!");
                         break;
@@ -68,17 +72,18 @@ namespace task_7_1
                     Console.WriteLine("3. Transfer");
                     Console.WriteLine("4. Add Account");
                     Console.WriteLine("5. Print");
-                    Console.WriteLine("6. Quit");
+                    Console.WriteLine("6. Transaction History");
+                    Console.WriteLine("7. Quit");
 
-                    int input = ReadInteger("Choose an option (1-6): ");
+                    int input = ReadInteger("Choose an option (1-7): ");
 
-                    if (input >= 1 && input <= 6)
+                    if (input >= 1 && input <= 7)
                     {
                         return (MenuOption)(input - 1);
                     }
                     else
                     {
-                        Console.WriteLine("Input must be between 1 and 6");
+                        Console.WriteLine("Input must be between 1 and 7");
                     }
                 }
                 catch (Exception e)
@@ -120,6 +125,7 @@ namespace task_7_1
 
             decimal amount = ReadDecimal("Enter amount to deposit: ");
             DepositTransaction transaction = new DepositTransaction(account, amount);
+           
             try
             {
                 transaction.Execute();
@@ -158,32 +164,47 @@ namespace task_7_1
 
         static void AddNewAccount(Bank bank)
         {
-            try
-            {
-                Console.Write("Enter account name: ");
-                string name = Console.ReadLine();
+            Console.Write("Enter account name: ");
+            string name = Console.ReadLine();
 
-                Console.Write("Enter balance: ");
-                decimal balance = ReadDecimal("Enter balance: ");
-
-                Account newAccount = new Account(name, balance);
-                bank.AddAccount(newAccount);
-                Console.WriteLine("The account " + name + " had been added\n");
-                bank.GetAccount(name);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Error adding new account: " + e.Message);
-            }
+            Console.Write("Enter balance: ");
+            decimal balance = ReadDecimal("Enter balance: ");
+            Account newAccount = new Account(name, balance);
+            bank.AddAccount(newAccount);
+            Console.WriteLine("The account " + name + " has been added\n");
         }
-
 
         static void DoPrint(Bank bank)
         {
             Account account = FindAccount(bank);
-            if (account == null) return;
+            if (account != null)
+            {
+                account.Print();
+            }
+        }
 
-            account.Print();
+        static void DoHistory(Bank bank)
+        {
+            bank.PrintTransactions();
+
+            Console.WriteLine("Do you want to rollback a transaction? (y/n)");
+            string input = Console.ReadLine();
+
+            if (input.ToLower() == "y")
+            {
+                int index = ReadInteger("Enter the number of the transaction you want to rollback: ");
+                Transaction transaction = bank.GetTransaction(index - 1);
+
+                if (transaction != null)
+                {
+                    bank.RollbackTransaction(transaction);
+                }
+                else
+                {
+                    Console.WriteLine("No transaction was found");
+                }
+            }
+
         }
 
         private static Account FindAccount(Bank bank)
@@ -245,6 +266,7 @@ namespace task_7_1
         Transfer,
         AddAccount,
         Print,
+        History,
         Quit
     }
 }

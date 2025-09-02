@@ -5,6 +5,7 @@ namespace task_7_1
     class Bank
     {
         private List<Account> _accounts = new List<Account>();
+        private List<Transaction> _transactions = new List<Transaction>();
 
         public void AddAccount(Account account)
         {
@@ -23,19 +24,53 @@ namespace task_7_1
             return null;
         }
 
-        public void ExecuteTransaction(DepositTransaction transaction)
+        public void ExecuteTransaction(Transaction transaction)
         {
             transaction.Execute();
+            _transactions.Add(transaction);
         }
 
-        public void ExecuteTransaction(WithdrawTransaction transaction)
+        public void RollbackTransaction(Transaction transaction)
         {
-            transaction.Execute();
+            try
+            {
+                transaction.Rollback();
+                Console.WriteLine("Transaction was rolled back");
+            }
+            catch (InvalidOperationException e)
+            {
+                Console.WriteLine("Rollback failed: " + e.Message);
+            }
         }
 
-        public void ExecuteTransaction(TransferTransaction transaction)
+        public void PrintTransactions()
         {
-            transaction.Execute();
+            if (_transactions.Count == 0)
+            {
+                Console.WriteLine("No transactions");
+                return;
+            }
+
+            Console.WriteLine("Transactions:");
+            foreach (Transaction transaction in _transactions)
+            {
+                int index = _transactions.IndexOf(transaction) + 1;
+                Console.WriteLine("\nTransaction " + index);
+                transaction.Print();
+            }
+        }
+
+        public Transaction GetTransaction(int index)
+        {
+
+            if (index > 0 || index <= _transactions.Count)
+            {
+                return _transactions[index];
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

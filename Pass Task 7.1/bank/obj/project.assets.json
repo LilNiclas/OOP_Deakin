@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\nicla\\Desktop\\Deakin Uni\\OOP\\Code\\Pass Task 6.2\\bank\\bank.csproj",
+      "projectUniqueName": "C:\\Users\\nicla\\Desktop\\Deakin Uni\\OOP\\Code\\Pass Task 7.1\\bank\\bank.csproj",
       "projectName": "bank",
-      "projectPath": "C:\\Users\\nicla\\Desktop\\Deakin Uni\\OOP\\Code\\Pass Task 6.2\\bank\\bank.csproj",
+      "projectPath": "C:\\Users\\nicla\\Desktop\\Deakin Uni\\OOP\\Code\\Pass Task 7.1\\bank\\bank.csproj",
       "packagesPath": "C:\\Users\\nicla\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\nicla\\Desktop\\Deakin Uni\\OOP\\Code\\Pass Task 6.2\\bank\\obj\\",
+      "outputPath": "C:\\Users\\nicla\\Desktop\\Deakin Uni\\OOP\\Code\\Pass Task 7.1\\bank\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\nicla\\AppData\\Roaming\\NuGet\\NuGet.Config",
