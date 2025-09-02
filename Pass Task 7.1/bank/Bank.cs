@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-namespace task_6_2
+namespace task_7_1
 {
     class Bank
     {

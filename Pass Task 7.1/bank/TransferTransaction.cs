@@ -1,44 +1,32 @@
 using System;
-namespace task_6_2
+namespace task_7_1
 {
-    class TransferTransaction
+    class TransferTransaction : Transaction
     {
         private Account _fromAccount;
         private Account _toAccount;
-        private decimal _amount;
-        private WithdrawTransaction _withdrawTransaction;
-        private DepositTransaction _depositTransaction;
-        private bool _executed;
-        private bool _reversed;
+        private WithdrawTransaction _withdraw;
+        private DepositTransaction _deposit;
 
-        public TransferTransaction(Account fromAccount, Account toAccount, decimal amount)
+        public TransferTransaction(Account fromAccount, Account toAccount, decimal amount) : base(amount)
         {
             _fromAccount = fromAccount;
             _toAccount = toAccount;
-            _amount = amount;
-            _withdrawTransaction = new WithdrawTransaction(_fromAccount, _amount);
-            _depositTransaction = new DepositTransaction(_toAccount, _amount);
-            _executed = false;
-            _reversed = false;
+            _withdraw = new WithdrawTransaction(_fromAccount, _amount);
+            _deposit = new DepositTransaction(_toAccount, _amount);
         }
 
-        public bool Executed => _executed;
-        public bool Reversed => _reversed;
-        public bool Success => _withdrawTransaction.Success && _depositTransaction.Success;
+        public override bool Success => _withdraw.Success && _deposit.Success;
 
-        public void Execute()
+        public override void Execute()
         {
-            if (Executed)
-            {
-                throw new InvalidOperationException("Transfer has already been executed.");
-            }
-
-            _executed = true;
+            base.Execute();
 
             try
             {
-                _withdrawTransaction.Execute();
-                _depositTransaction.Execute();
+                _withdraw.Execute();
+                _deposit.Execute();
+                _success = true;
             }
             catch (Exception ex)
             {
@@ -46,28 +34,20 @@ namespace task_6_2
             }
         }
 
-        public void Rollback()
+        public override void Rollback()
         {
-            if (!Executed)
-            {
-                throw new InvalidOperationException("Cannot rollback a transfer that hasn't been executed.");
-            }
-
-            if (Reversed)
-            {
-                throw new InvalidOperationException("Transfer has already been reversed.");
-            }
+            base.Rollback();
 
             if (!Success)
             {
                 throw new InvalidOperationException("Transfer was not successful, can't rollback.");
             }
-
+           
             try
             {
-                _depositTransaction.Rollback();
-                _withdrawTransaction.Rollback();
-                _reversed = true;
+                _deposit.Rollback();
+                _withdraw.Rollback();
+                _success = false;
             }
             catch (Exception ex)
             {
@@ -75,11 +55,12 @@ namespace task_6_2
             }
         }
 
-        public void Print()
+        public override void Print()
         {
             Console.WriteLine("Transferred " + _amount + " from " + _fromAccount.GetName() + " to " + _toAccount.GetName());
-            _withdrawTransaction.Print();
-            _depositTransaction.Print();
+            Console.WriteLine("Executed: " + Executed + "\nSuccess: " + Success + "\nReversed: " + Reversed + "\nDate: " + DateStamp);
+            _withdraw.Print();
+            _deposit.Print();
         }
     }
 }

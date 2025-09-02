@@ -1,42 +1,20 @@
 using System;
-namespace task_6_2
+namespace task_7_1
 {
-    class WithdrawTransaction
+    class WithdrawTransaction : Transaction
     {
         private Account _account;
-        private decimal _amount;
-        private bool _executed;
-        private bool _success;
-        private bool _reversed;
 
-        public WithdrawTransaction(Account account, decimal amount)
+        public WithdrawTransaction(Account account, decimal amount) : base(amount)
         {
             _account = account;
-            _amount = amount;
-            _executed = false;
-            _success = false;
-            _reversed = false;
         }
 
-        public bool Success => _success;
-        public bool Reversed => _reversed;
-        public bool Executed => _executed;
+        public override bool Success => _success;
 
-        public void Print()
+        public override void Execute()
         {
-            Console.WriteLine("Withdraw Transaction: " + _amount + " from " + _account.GetName());
-            Console.WriteLine("Executed: " + Executed + "\nSuccess: " + Success + "\nReversed: " + Reversed + "\n");
-            Console.WriteLine("Current Balance: " + _account.GetBalance() + "\n");
-        }
-
-        public void Execute()
-        {
-            if (Executed)
-            {
-                throw new InvalidOperationException("Transaction has already been executed");
-            }
-
-            _executed = true;
+            base.Execute();
 
             if (_account.Withdraw(_amount))
             {
@@ -48,27 +26,32 @@ namespace task_6_2
             }
         }
 
-        public void Rollback()
+        public override void Rollback()
         {
-            if (!Executed)
-            {
-                throw new InvalidOperationException("Transaction has not been executed yet");
-            }
-            if (Reversed)
-            {
-                throw new InvalidOperationException("Transaction has already been reversed");
-            }
+            base.Rollback();
+
             if (Success)
             {
                 if (_account.Deposit(_amount))
                 {
-                    _reversed = true;
+                    _success = false;
+                }
+                else
+                {
+                    throw new InvalidOperationException("Rollback failed");
                 }
             }
             else
             {
                 throw new InvalidOperationException("Transaction was not successful, can't rollback");
             }
+        }
+
+        public override void Print()
+        {
+            Console.WriteLine("Withdraw Transaction: " + _amount + " from " + _account.GetName());
+            Console.WriteLine("Executed: " + Executed + "\nSuccess: " + Success + "\nReversed: " + Reversed + "\nDate: " + DateStamp);
+            Console.WriteLine("Current Balance: " + _account.GetBalance() + "\n");
         }
     }
 }
