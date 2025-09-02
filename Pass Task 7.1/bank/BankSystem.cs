@@ -102,17 +102,18 @@ namespace task_7_1
             }
 
             decimal amount = ReadDecimal("Enter amount to withdraw: ");
-            WithdrawTransaction transaction = new WithdrawTransaction(account, amount);
+            Transaction transaction = new WithdrawTransaction(account, amount);
+
             try
             {
-                transaction.Execute();
+                bank.ExecuteTransaction(transaction);
                 Console.WriteLine("Withdrawal successful");
+                transaction.Print();
             }
             catch (InvalidOperationException e)
             {
                 Console.WriteLine(e.Message);
             }
-            transaction.Print();
         }
 
         static void DoDeposit(Bank bank)
@@ -124,18 +125,18 @@ namespace task_7_1
             }
 
             decimal amount = ReadDecimal("Enter amount to deposit: ");
-            DepositTransaction transaction = new DepositTransaction(account, amount);
-           
+            Transaction transaction = new DepositTransaction(account, amount);
+
             try
             {
-                transaction.Execute();
+                bank.ExecuteTransaction(transaction);
                 Console.WriteLine("Withdrawal successful");
+                transaction.Print();
             }
             catch (InvalidOperationException e)
             {
                 Console.WriteLine(e.Message);
             }
-            transaction.Print();
         }
 
         static void DoTransfer(Bank bank)
@@ -149,17 +150,17 @@ namespace task_7_1
             if (to == null) return;
 
             decimal amount = ReadDecimal("Enter amount to transfer: ");
-            TransferTransaction transaction = new TransferTransaction(from, to, amount);
+            Transaction transaction = new TransferTransaction(from, to, amount);
             try
             {
-                transaction.Execute();
+                bank.ExecuteTransaction(transaction);
                 Console.WriteLine("Transfer successful");
+                transaction.Print();
             }
             catch (InvalidOperationException e)
             {
                 Console.WriteLine(e.Message);
             }
-            transaction.Print();
         }
 
         static void AddNewAccount(Bank bank)
