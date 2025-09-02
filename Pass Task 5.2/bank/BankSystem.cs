@@ -119,12 +119,16 @@ namespace task_5_2
             {
                 transaction.Execute();
                 Console.WriteLine("Transfer successful");
+                transaction.Print();
+
+                transaction.Rollback();
+                Console.WriteLine("Transfer rolled back");
+                transaction.Print();
             }
             catch (InvalidOperationException e)
             {
                 Console.WriteLine(e.Message);
             }
-            transaction.Print();
         }
 
 

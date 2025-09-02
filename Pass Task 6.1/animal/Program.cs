@@ -8,7 +8,6 @@ namespace task_6_1
             // Q2 - Polymorphism
 
             // Bird
-            List<Bird> birds = new List<Bird>();
             Bird bird1 = new Bird();
             Bird bird2 = new Bird();
             bird1.name = "Feathers";
@@ -45,6 +44,7 @@ namespace task_6_1
             Console.WriteLine(duck2.ToString());
 
             // Add all birds to the list
+            List<Bird> birds = new List<Bird>();
             birds.Add(bird1);
             birds.Add(bird2);
             birds.Add(penguin1);
@@ -53,7 +53,6 @@ namespace task_6_1
             birds.Add(duck2);
 
             birds.Add(new Bird() { name = "Birdy" });
-
             foreach (Bird bird in birds)
             {
                  Console.WriteLine(bird);
@@ -77,6 +76,7 @@ namespace task_6_1
             {
                 Console.WriteLine(bird);
             }
+            
         }
     }
 }
