@@ -100,7 +100,7 @@ namespace task_6_2
             WithdrawTransaction transaction = new WithdrawTransaction(account, amount);
             try
             {
-                transaction.Execute();
+                bank.ExecuteTransaction(transaction);
                 Console.WriteLine("Withdrawal successful");
             }
             catch (InvalidOperationException e)
@@ -122,7 +122,7 @@ namespace task_6_2
             DepositTransaction transaction = new DepositTransaction(account, amount);
             try
             {
-                transaction.Execute();
+                bank.ExecuteTransaction(transaction);
                 Console.WriteLine("Withdrawal successful");
             }
             catch (InvalidOperationException e)
@@ -146,7 +146,7 @@ namespace task_6_2
             TransferTransaction transaction = new TransferTransaction(from, to, amount);
             try
             {
-                transaction.Execute();
+                bank.ExecuteTransaction(transaction);
                 Console.WriteLine("Transfer successful");
             }
             catch (InvalidOperationException e)
