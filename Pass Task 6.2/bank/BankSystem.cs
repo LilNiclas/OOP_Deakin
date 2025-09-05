@@ -136,11 +136,16 @@ namespace task_6_2
         {
             Console.WriteLine("From Account:");
             Account from = FindAccount(bank);
-            if (from == null) return;
-
+            if (from == null)
+            {
+                return;
+            }
             Console.WriteLine("To Account:");
             Account to = FindAccount(bank);
-            if (to == null) return;
+            if (to == null)
+            {
+                return;
+            }
 
             decimal amount = ReadDecimal("Enter amount to transfer: ");
             TransferTransaction transaction = new TransferTransaction(from, to, amount);
@@ -169,7 +174,6 @@ namespace task_6_2
                 Account newAccount = new Account(name, balance);
                 bank.AddAccount(newAccount);
                 Console.WriteLine("The account " + name + " had been added\n");
-                bank.GetAccount(name);
             }
             catch (Exception e)
             {
@@ -181,8 +185,10 @@ namespace task_6_2
         static void DoPrint(Bank bank)
         {
             Account account = FindAccount(bank);
-            if (account == null) return;
-
+            if (account == null)
+            {
+                return;
+            }
             account.Print();
         }
 
