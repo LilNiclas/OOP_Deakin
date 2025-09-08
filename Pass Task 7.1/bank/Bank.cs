@@ -43,7 +43,7 @@ namespace task_7_1
             }
         }
 
-        public void PrintTransactions()
+        public void PrintTranscationHistory()
         {
             if (_transactions.Count == 0)
             {

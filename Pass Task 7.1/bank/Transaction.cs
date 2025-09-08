@@ -9,8 +9,8 @@ namespace task_7_1
         private bool _executed;
         private bool _reversed;
         private DateTime _datestamp;
-
         public abstract bool Success { get; }
+
         public bool Executed => _executed;
         public bool Reversed => _reversed;
         public DateTime DateStamp => _datestamp;
@@ -27,7 +27,7 @@ namespace task_7_1
         {
             if (_executed)
             {
-                throw new InvalidOperationException("Transaction has already been executed.");
+                throw new InvalidOperationException("Transaction has already been executed");
             }
             _executed = true;
             _datestamp = DateTime.Now;
@@ -37,11 +37,11 @@ namespace task_7_1
         {
             if (!_executed)
             {
-                throw new InvalidOperationException("Transaction has not been executed yet.");
+                throw new InvalidOperationException("Transaction has not been executed yet");
             }
             if (_reversed)
             {
-                throw new InvalidOperationException("Transaction has already been reversed.");
+                throw new InvalidOperationException("Transaction has already been reversed");
             }
             _reversed = true;
             _datestamp = DateTime.Now;

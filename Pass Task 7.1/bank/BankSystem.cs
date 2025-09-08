@@ -186,7 +186,7 @@ namespace task_7_1
 
         static void DoHistory(Bank bank)
         {
-            bank.PrintTransactions();
+            bank.PrintTranscationHistory();
 
             Console.WriteLine("Do you want to rollback a transaction? (y/n)");
             string input = Console.ReadLine();
