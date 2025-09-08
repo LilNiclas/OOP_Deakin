@@ -62,7 +62,6 @@ namespace task_7_1
 
         public Transaction GetTransaction(int index)
         {
-
             if (index > 0 || index <= _transactions.Count)
             {
                 return _transactions[index];
